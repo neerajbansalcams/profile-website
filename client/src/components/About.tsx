@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import avatarPlaceholder from "@/assets/avatar-placeholder.png";
+import profilePic from "@/assets/Neeraj_Profile_pic_1770165592876.jpeg";
 
 export default function About() {
   return (
@@ -29,7 +29,7 @@ export default function About() {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary to-blue-600 rounded-2xl opacity-30 blur-xl transform rotate-6"></div>
               <div className="relative rounded-2xl overflow-hidden border border-white/10 glass shadow-2xl">
                 <img 
-                  src={avatarPlaceholder} 
+                  src={profilePic} 
                   alt="Neeraj Bansal" 
                   className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
                 />
