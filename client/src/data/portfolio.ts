@@ -106,5 +106,82 @@ export const portfolioData = {
     "OCBC Group CEO Quality Award",
     "Excellent Service Award (Silver)",
     "Excellent Service Award (Star)"
-  ]
+  ],
+  blog: {
+    categories: [
+      "AML/KYC",
+      "RegTech",
+      "Digital Transformation",
+      "Compliance",
+      "Fraud Prevention"
+    ],
+    articles: [
+      {
+        id: 1,
+        title: "The Evolution of AML/KYC in the Digital Age",
+        excerpt: "Unlocking the Potential: Approaching Digital eKYC Transformation",
+        content: "Full article content here",
+        category: "AML/KYC",
+        publishedDate: "2024-12-15",
+        readTime: 6,
+        link: "https://grcoutlook.com/unlocking-the-potential-approaching-digital-ekyc-transformation/",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 2,
+        title: "Why RegTech Solutions are Critical for Financial Crime Prevention",
+        excerpt: "Understanding how regulatory technology solutions help financial institutions combat money laundering, fraud, and other financial crimes more effectively.",
+        content: "Full article content here",
+        category: "RegTech",
+        publishedDate: "2024-12-08",
+        readTime: 5,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 3,
+        title: "Digital Transformation in Financial Crime Compliance",
+        excerpt: "A comprehensive guide on implementing digital transformation initiatives within compliance departments to enhance efficiency and reduce operational risk.",
+        content: "Full article content here",
+        category: "Digital Transformation",
+        publishedDate: "2024-11-30",
+        readTime: 8,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 4,
+        title: "Machine Learning in Transaction Monitoring: Benefits and Challenges",
+        excerpt: "Discover how machine learning models are improving transaction monitoring systems and the challenges organizations face in deployment.",
+        content: "Full article content here",
+        category: "RegTech",
+        publishedDate: "2024-11-22",
+        readTime: 7,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 5,
+        title: "Navigating Sanctions Screening: Best Practices for 2024",
+        excerpt: "Essential strategies for implementing effective sanctions screening programs while maintaining operational efficiency in compliance teams.",
+        content: "Full article content here",
+        category: "Compliance",
+        publishedDate: "2024-11-15",
+        readTime: 6,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 6,
+        title: "Emerging Fraud Patterns: What Financial Institutions Need to Know",
+        excerpt: "An analysis of emerging fraud patterns in 2024 and recommendations for financial institutions to strengthen their fraud prevention strategies.",
+        content: "Full article content here",
+        category: "Fraud Prevention",
+        publishedDate: "2024-11-08",
+        readTime: 5,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      }
+    ]
+  }
 };
