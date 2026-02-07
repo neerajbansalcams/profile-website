@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Linkedin, Mail, FileText } from "lucide-react";
-import { Link } from "wouter";
+import { Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -55,9 +54,18 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <Button variant="outline" size="sm" className="hidden lg:flex border-primary/50 text-primary hover:bg-primary/10">
-            <FileText className="w-4 h-4 mr-2" />
-            Resume
+          
+          {/* CORRECTED DESKTOP BUTTON */}
+          <Button 
+            asChild 
+            variant="outline" 
+            size="sm" 
+            className="hidden lg:flex border-primary/50 text-primary hover:bg-primary/10"
+          >
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download>
+              <FileText className="w-4 h-4 mr-2" />
+              Resume
+            </a>
           </Button>
         </div>
 
@@ -70,7 +78,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-white/10 p-6 animate-in slide-in-from-top-5">
           <div className="flex flex-col space-y-4">
@@ -84,8 +92,12 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
-            <Button className="w-full bg-primary text-background hover:bg-primary/90">
-              Download Resume
+            
+            {/* CORRECTED MOBILE BUTTON */}
+            <Button asChild className="w-full bg-primary text-background hover:bg-primary/90">
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" download>
+                Download Resume
+              </a>
             </Button>
           </div>
         </div>
