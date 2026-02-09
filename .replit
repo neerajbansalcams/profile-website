@@ -41,3 +41,7 @@ waitForPort = 5000
 [agent]
 stack = "MOCKUP_JS"
 mockupState = "MOCKUP"
+[[deployment.redirects]]
+from = "https://neeraj-bansal.com/*"
+to = "https://www.neeraj-bansal.com/:splat"
+status = 301
