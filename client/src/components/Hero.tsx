@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import heroBg from "@/assets/hero-bg.png"; // We'll use this generated image
 
 export default function Hero() {

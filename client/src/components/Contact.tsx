@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Mail, Phone, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

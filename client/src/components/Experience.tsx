@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Briefcase, Calendar, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 

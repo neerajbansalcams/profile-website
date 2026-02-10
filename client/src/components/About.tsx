@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import profilePic from "@/assets/Neeraj_Profile_pic_1770165592876.jpeg";
 
 export default function About() {

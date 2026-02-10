@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { GraduationCap } from "lucide-react";
 
 export default function Education() {
