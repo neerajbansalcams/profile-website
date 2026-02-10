@@ -4,9 +4,7 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/public"
-      }
+      "config": { "distDir": "dist/public" }
     },
     {
       "src": "server/index.ts",
@@ -14,13 +12,7 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "server/index.ts"
-    },
-    {
-      "source": "/((?!assets/|favicon_io/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "server/index.ts" },
+    { "source": "/((?!assets/|favicon_io/).*)", "destination": "/index.html" }
   ]
 }
