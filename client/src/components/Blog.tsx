@@ -20,6 +20,8 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
+  const isExternalLink = (link: string) => link.startsWith("http");
+
   return (
     <section id="blog" className="py-20 bg-background relative overflow-hidden">
       {/* Gradient Background */}
@@ -119,8 +121,10 @@ export default function Blog() {
                 {/* Read More Link */}
                 <a
                   href={article.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(isExternalLink(article.link) && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                   className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all group"
                 >
                   Read Article
