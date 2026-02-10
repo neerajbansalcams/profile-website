@@ -119,50 +119,71 @@ export const portfolioData = {
     articles: [
       {
         id: 1,
-        title: "Navigating MiCA for ASEAN-based Fintechs: A Comparative Playbook with Singapore's Project Guardian",
-        excerpt: "Understanding the regulatory differences between Singapore's Project Guardian and EU's MiCA frameworks: A strategic guide for ASEAN fintech leadership teams.",
-        content: `As the Markets in Crypto-Assets (MiCA) regulation reaches full operational status in 2026, the European Union has effectively set a global benchmark for digital asset oversight. For fintechs based in the ASEAN region—particularly those regulated by the Monetary Authority of Singapore (MAS)—this represents both a significant barrier and a strategic opportunity.
-
-The challenge for leadership teams today is understanding where Singapore's "Playbook" approach through Project Guardian aligns with the EU's rigid legislative framework.
-
-## The Core Shift: "Playbooks" vs. "Hard Law"
-
-The most critical difference lies in the regulatory philosophy:
-
-**Singapore (Project Guardian):** MAS takes a collaborative, "learning-by-doing" approach. Project Guardian focuses on open, interoperable networks and uses pilots to develop industry standards for tokenized funds and fixed income. It is a proportional risk-based model where regulation adapts to the specific use case.
-
-**EU (MiCA):** Unlike the pilot-driven nature of Singapore, MiCA is a comprehensive, uniform law. It provides a single "passportable" license across 27 countries but at the cost of high entry barriers and strict, non-negotiable standards for stablecoins and market abuse.
-
-## Key Comparison: Digital Assets and Stablecoins
-
-| Feature | MAS (Singapore) | EU MiCA |
-|---------|-----------------|---------|
-| **Stablecoin Stance** | Focus on Single-Currency Stablecoins (SCS) with individual risk assessments. | Strict ban on algorithmic stablecoins; rigorous reserve requirements for ARTs/EMTs. |
-| **Retail Access** | Strict: Includes knowledge tests for retail traders and a ban on credit card crypto purchases. | Accessible: Focuses on standardized "White Papers" to ensure investors are "better informed". |
-| **Interoperability** | Core Objective: Developing "Global Layer One" (GL1) infrastructure for cross-border institutional trading. | Secondary: Focused on internal market integrity and preventing fragmentation within the Eurozone. |
-
-## Strategic Insights for ASEAN Fintechs
-
-### 1. Leverage the "Trust Anchor" Advantage
-
-Under Project Guardian, MAS explores the role of regulated financial institutions as "Trust Anchors" to verify identities and credentials. If your firm is already operating under an MAS Major Payment Institution (MPI) license, you are already meeting the world's most rigorous KYC/AML standards. Use this "Singapore Brand" as a trust signal when applying for a CASP license in the EU.
-
-### 2. Prepare for "Travel Rule" Convergence
-
-Both jurisdictions have now fully enforced the FATF Travel Rule. In 2026, your tech stack must be able to transmit originator and beneficiary data for transactions as low as $0 (Singapore) and €1,000 (EU). Interoperability between your AML tools (like Actimize or NetReveal) and these regulatory rails is no longer optional—it is a license requirement.
-
-### 3. The Tokenization Opportunity
-
-While MiCA provides the rules for trading, Singapore is providing the rules for building. Project Guardian's playbooks for tokenized funds and asset-referenced tokens provide a technical blueprint that can help your firm satisfy MiCA's operational resilience requirements (DORA) more efficiently.
-
-## The Bottom Line
-
-For ASEAN fintechs, the path to 2026 is clear: Singapore is your innovation hub; MiCA is your scale-up destination. By aligning your internal governance with the "institutional-grade rails" promoted by MAS, you are already halfway to satisfying the EU's requirements.`,
+        title: "Navigating MiCA for ASEAN Fintechs: Bridging the 2026 Regulatory Divide",
+        excerpt: "As MiCA reaches full operational status in 2026, learn how ASEAN fintechs can leverage Singapore's Project Guardian as a strategic blueprint for EU expansion.",
         category: "Fintech Regulation",
-        publishedDate: "2026-02-01",
-        readTime: 5,
-        link: "/blog/navigating-mica-for-asean-fintechs",
-        author: "Neeraj Bansal"
+        publishedDate: "2026-02-11",
+        readTime: 6,
+        author: "Neeraj Bansal",
+        link: "/blog/navigating-mica-asean-fintechs",
+        content: `
+          <p class="lead">As we enter 2026, the global digital asset landscape has reached a historic inflection point. With the <strong>Markets in Crypto-Assets (MiCA)</strong> regulation now fully operational across the European Union, the "wild west" era is over. For ASEAN fintechs—especially those operating under the watchful eye of the <strong>Monetary Authority of Singapore (MAS)</strong>—this is a pivotal moment.</p>
+
+          <p>The challenge for leadership teams today is understanding where Singapore's "Playbook" approach through Project Guardian aligns with the EU's rigid legislative framework.</p>
+
+          <h2 class="text-2xl font-bold mt-8 mb-4 text-primary">The Core Shift: "Playbooks" vs. "Hard Law"</h2>
+          <p>The most critical difference lies in the regulatory philosophy:</p>
+          <ul>
+            <li><strong>Singapore (The Laboratory):</strong> Through <strong>Project Guardian</strong>, MAS has championed a "learning-by-doing" philosophy. It is an iterative, risk-based model that prioritizes interoperability and institutional-grade tokenization.</li>
+            <li><strong>EU (The Fortress):</strong> MiCA is a comprehensive, uniform law. While it offers a "passportable" license across 27 countries, it demands high entry barriers and strict, non-negotiable standards for stablecoins.</li>
+          </ul>
+
+          <h2 class="text-2xl font-bold mt-8 mb-4 text-primary">Strategic Comparison</h2>
+          <div class="overflow-x-auto my-6">
+            <table class="min-w-full border border-white/10 text-sm">
+              <thead>
+                <tr class="bg-white/5">
+                  <th class="border border-white/10 p-2">Feature</th>
+                  <th class="border border-white/10 p-2">MAS (Singapore)</th>
+                  <th class="border border-white/10 p-2">EU MiCA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-white/10 p-2 font-bold">Stablecoins</td>
+                  <td class="border border-white/10 p-2">Individual risk assessments for Single-Currency Stablecoins (SCS).</td>
+                  <td class="border border-white/10 p-2">Strict ban on algorithmic models; rigorous reserve requirements.</td>
+                </tr>
+                <tr>
+                  <td class="border border-white/10 p-2 font-bold">Retail Access</td>
+                  <td class="border border-white/10 p-2">Strict friction: Knowledge tests and credit card crypto bans.</td>
+                  <td class="border border-white/10 p-2">Accessible: Standardized "White Papers" for informed investors.</td>
+                </tr>
+                <tr>
+                  <td class="border border-white/10 p-2 font-bold">Interoperability</td>
+                  <td class="border border-white/10 p-2">Core Objective: Developing "Global Layer One" infrastructure.</td>
+                  <td class="border border-white/10 p-2">Secondary: Focused on preventing market fragmentation.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="text-2xl font-bold mt-8 mb-4 text-primary">Strategic Insights for ASEAN Fintechs</h2>
+
+          <h3 class="text-xl font-semibold mt-6 mb-2">1. Leverage the "Trust Anchor" Advantage</h3>
+          <p>Under Project Guardian, your firm acts as a <strong>"Trust Anchor."</strong> If you hold an MAS Major Payment Institution (MPI) license, you are already meeting the world's most rigorous KYC/AML standards. Use this "Singapore Brand" as a premium trust signal when applying for a CASP license in the EU.</p>
+
+          <h3 class="text-xl font-semibold mt-6 mb-2">2. Prepare for "Travel Rule" Convergence</h3>
+          <p>In 2026, your tech stack must transmit data for transactions as low as $0 (Singapore) and €1,000 (EU). Interoperability between your AML tools (like Actimize or NetReveal) and these regulatory rails is no longer optional—it is a license requirement.</p>
+
+          <h3 class="text-xl font-semibold mt-6 mb-2">3. The Tokenization Opportunity</h3>
+          <p>While MiCA provides the rules for trading, Singapore provides the rules for building. Project Guardian's playbooks for tokenized funds offer a technical blueprint that can help satisfy the EU's <strong>Digital Operational Resilience Act (DORA)</strong> requirements efficiently.</p>
+
+          <div class="bg-primary/10 p-6 rounded-lg mt-10 border border-primary/20">
+            <h2 class="text-xl font-bold mb-2">The Bottom Line</h2>
+            <p class="mb-0">For ASEAN fintechs, the path to 2026 is clear: <strong>Singapore is your innovation hub; MiCA is your scale-up destination.</strong> By aligning your internal governance with MAS's institutional rails, you are already halfway to satisfying the EU's requirements.</p>
+          </div>
+        `
       },
       {
         id: 2,
