@@ -161,7 +161,7 @@ For ASEAN fintechs, the path to 2026 is clear: Singapore is your innovation hub;
         category: "Fintech Regulation",
         publishedDate: "2026-02-01",
         readTime: 5,
-        link: "https://linkedin.com/feed",
+        link: "/blog/navigating-mica-for-asean-fintechs",
         author: "Neeraj Bansal"
       },
       {
