@@ -113,11 +113,59 @@ export const portfolioData = {
       "RegTech",
       "Digital Transformation",
       "Compliance",
-      "Fraud Prevention"
+      "Fraud Prevention",
+      "Fintech Regulation"
     ],
     articles: [
       {
         id: 1,
+        title: "Navigating MiCA for ASEAN-based Fintechs: A Comparative Playbook with Singapore's Project Guardian",
+        excerpt: "Understanding the regulatory differences between Singapore's Project Guardian and EU's MiCA frameworks: A strategic guide for ASEAN fintech leadership teams.",
+        content: `As the Markets in Crypto-Assets (MiCA) regulation reaches full operational status in 2026, the European Union has effectively set a global benchmark for digital asset oversight. For fintechs based in the ASEAN region—particularly those regulated by the Monetary Authority of Singapore (MAS)—this represents both a significant barrier and a strategic opportunity.
+
+The challenge for leadership teams today is understanding where Singapore's "Playbook" approach through Project Guardian aligns with the EU's rigid legislative framework.
+
+## The Core Shift: "Playbooks" vs. "Hard Law"
+
+The most critical difference lies in the regulatory philosophy:
+
+**Singapore (Project Guardian):** MAS takes a collaborative, "learning-by-doing" approach. Project Guardian focuses on open, interoperable networks and uses pilots to develop industry standards for tokenized funds and fixed income. It is a proportional risk-based model where regulation adapts to the specific use case.
+
+**EU (MiCA):** Unlike the pilot-driven nature of Singapore, MiCA is a comprehensive, uniform law. It provides a single "passportable" license across 27 countries but at the cost of high entry barriers and strict, non-negotiable standards for stablecoins and market abuse.
+
+## Key Comparison: Digital Assets and Stablecoins
+
+| Feature | MAS (Singapore) | EU MiCA |
+|---------|-----------------|---------|
+| **Stablecoin Stance** | Focus on Single-Currency Stablecoins (SCS) with individual risk assessments. | Strict ban on algorithmic stablecoins; rigorous reserve requirements for ARTs/EMTs. |
+| **Retail Access** | Strict: Includes knowledge tests for retail traders and a ban on credit card crypto purchases. | Accessible: Focuses on standardized "White Papers" to ensure investors are "better informed". |
+| **Interoperability** | Core Objective: Developing "Global Layer One" (GL1) infrastructure for cross-border institutional trading. | Secondary: Focused on internal market integrity and preventing fragmentation within the Eurozone. |
+
+## Strategic Insights for ASEAN Fintechs
+
+### 1. Leverage the "Trust Anchor" Advantage
+
+Under Project Guardian, MAS explores the role of regulated financial institutions as "Trust Anchors" to verify identities and credentials. If your firm is already operating under an MAS Major Payment Institution (MPI) license, you are already meeting the world's most rigorous KYC/AML standards. Use this "Singapore Brand" as a trust signal when applying for a CASP license in the EU.
+
+### 2. Prepare for "Travel Rule" Convergence
+
+Both jurisdictions have now fully enforced the FATF Travel Rule. In 2026, your tech stack must be able to transmit originator and beneficiary data for transactions as low as $0 (Singapore) and €1,000 (EU). Interoperability between your AML tools (like Actimize or NetReveal) and these regulatory rails is no longer optional—it is a license requirement.
+
+### 3. The Tokenization Opportunity
+
+While MiCA provides the rules for trading, Singapore is providing the rules for building. Project Guardian's playbooks for tokenized funds and asset-referenced tokens provide a technical blueprint that can help your firm satisfy MiCA's operational resilience requirements (DORA) more efficiently.
+
+## The Bottom Line
+
+For ASEAN fintechs, the path to 2026 is clear: Singapore is your innovation hub; MiCA is your scale-up destination. By aligning your internal governance with the "institutional-grade rails" promoted by MAS, you are already halfway to satisfying the EU's requirements.`,
+        category: "Fintech Regulation",
+        publishedDate: "2026-02-01",
+        readTime: 5,
+        link: "https://linkedin.com/feed",
+        author: "Neeraj Bansal"
+      },
+      {
+        id: 2,
         title: "The Evolution of AML/KYC in the Digital Age",
         excerpt: "Unlocking the Potential: Approaching Digital eKYC Transformation",
         content: "Full article content here",
@@ -128,7 +176,7 @@ export const portfolioData = {
         author: "Neeraj Bansal"
       },
       {
-        id: 2,
+        id: 3,
         title: "Why RegTech Solutions are Critical for Financial Crime Prevention",
         excerpt: "Understanding how regulatory technology solutions help financial institutions combat money laundering, fraud, and other financial crimes more effectively.",
         content: "Full article content here",
@@ -139,7 +187,7 @@ export const portfolioData = {
         author: "Neeraj Bansal"
       },
       {
-        id: 3,
+        id: 4,
         title: "Digital Transformation in Financial Crime Compliance",
         excerpt: "A comprehensive guide on implementing digital transformation initiatives within compliance departments to enhance efficiency and reduce operational risk.",
         content: "Full article content here",
@@ -150,7 +198,7 @@ export const portfolioData = {
         author: "Neeraj Bansal"
       },
       {
-        id: 4,
+        id: 5,
         title: "Machine Learning in Transaction Monitoring: Benefits and Challenges",
         excerpt: "Discover how machine learning models are improving transaction monitoring systems and the challenges organizations face in deployment.",
         content: "Full article content here",
@@ -161,7 +209,7 @@ export const portfolioData = {
         author: "Neeraj Bansal"
       },
       {
-        id: 5,
+        id: 6,
         title: "Navigating Sanctions Screening: Best Practices for 2024",
         excerpt: "Essential strategies for implementing effective sanctions screening programs while maintaining operational efficiency in compliance teams.",
         content: "Full article content here",
@@ -172,7 +220,7 @@ export const portfolioData = {
         author: "Neeraj Bansal"
       },
       {
-        id: 6,
+        id: 7,
         title: "Emerging Fraud Patterns: What Financial Institutions Need to Know",
         excerpt: "An analysis of emerging fraud patterns in 2024 and recommendations for financial institutions to strengthen their fraud prevention strategies.",
         content: "Full article content here",
