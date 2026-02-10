@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Calendar, ArrowRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -109,7 +110,13 @@ export default function Blog() {
                 {/* Meta Information */}
                 <div className="flex items-center text-gray-500 text-sm mb-4">
                   <Calendar size={16} className="mr-2" />
-                  <span>{new Date(article.publishedDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                  <span>
+                    {new Date(article.publishedDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
                   {article.readTime && (
                     <>
                       <span className="mx-2">•</span>
@@ -118,18 +125,27 @@ export default function Blog() {
                   )}
                 </div>
 
-                {/* Read More Link */}
-                <a
-                  href={article.link}
-                  {...(isExternalLink(article.link) && {
-                    target: "_blank",
-                    rel: "noopener noreferrer",
-                  })}
-                  className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all group"
-                >
-                  Read Article
-                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </a>
+                {/* Read More Link - Logic starts here */}
+                {isExternalLink(article.link) ? (
+                  // 1. EXTERNAL LINK (LinkedIn/GRC Outlook)
+                  <a
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all group"
+                  >
+                    Read Article
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                ) : (
+                  // 2. INTERNAL LINK (Your new MiCA Post)
+                  <Link href={article.link}>
+                    <a className="inline-flex items-center text-primary text-sm font-medium hover:gap-2 transition-all group">
+                      Read Article
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </Link>
+                )}
               </article>
             ))}
           </div>
