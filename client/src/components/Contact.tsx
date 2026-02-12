@@ -4,8 +4,58 @@ import { Mail, Phone, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
+  const toast = useToast();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validate = () => {
+    if (!name || !email || !subject || !message) {
+      toast.toast({ title: "Please fill out all fields.", variant: "destructive" });
+      return false;
+    }
+    // simple email regex
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailRegex.test(email)) {
+      toast.toast({ title: "Please enter a valid email address.", variant: "destructive" });
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (!res.ok) throw new Error("Network response was not ok");
+
+      toast.toast({ title: "Message sent successfully!", variant: "default" });
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (err) {
+      console.error(err);
+      toast.toast({ title: "Failed to send message.", variant: "destructive" });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 relative bg-gradient-to-b from-background to-black">
       <div className="container mx-auto px-6">
@@ -61,27 +111,52 @@ export default function Contact() {
             className="glass-card p-8 rounded-2xl"
           >
             <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400">Name</label>
-                  <Input placeholder="Your Name" className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50" />
+                  <Input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Your Name"
+                    className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50"
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400">Email</label>
-                  <Input placeholder="Your Email" className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50" />
+                  <Input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your Email"
+                    className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50"
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm text-gray-400">Subject</label>
-                <Input placeholder="Regarding..." className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50" />
+                <Input
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  placeholder="Regarding..."
+                  className="bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50"
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm text-gray-400">Message</label>
-                <Textarea placeholder="Hello Neeraj, I'd like to discuss..." className="min-h-[120px] bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50" />
+                <Textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Hello Neeraj, I'd like to discuss..."
+                  className="min-h-[120px] bg-black/20 border-white/10 text-white placeholder:text-gray-600 focus:border-primary/50"
+                />
               </div>
-              <Button type="submit" className="w-full bg-primary text-background hover:bg-primary/90 font-semibold py-6">
-                Send Message <Send className="ml-2 w-4 h-4" />
+              <Button
+                type="submit"
+                className="w-full bg-primary text-background hover:bg-primary/90 font-semibold py-6"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+                <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
           </motion.div>
