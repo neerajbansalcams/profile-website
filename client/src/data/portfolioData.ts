@@ -5,7 +5,7 @@ export const portfolioData = {
     name: "Neeraj Bansal",
     title: "Business Architect | AML | KYC | Anti-Fraud | RegTech",
     tagline: "Enabling businesses to find the perfect blend of technology solutions and processes to combat financial crime.",
-    email: "neerajbansal.mba@gmail.com",
+    email: "contact@neeraj-bansal.com",
     phone: "+65 8620 4414",
     location: "Singapore",
     linkedin: "https://www.linkedin.com/in/neeraj-bansal-sg",
