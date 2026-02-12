@@ -78,7 +78,7 @@ export default function Hero() {
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               className="absolute -top-6 -right-6 glass p-4 rounded-xl border border-white/10 z-20"
             >
-              <span className="text-primary font-bold text-xl">18+ Years</span>
+              <span className="text-primary font-bold text-xl">20+ Years</span>
               <p className="text-xs text-gray-400">Global Experience</p>
             </motion.div>
 
