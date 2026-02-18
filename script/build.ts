@@ -3,7 +3,6 @@ import { build as viteBuild } from "vite";
 import { rm, readFile } from "fs/promises";
 
 // server deps to bundle to reduce openat(2) syscalls
-// which helps cold start times
 const allowlist = [
   "@google/generative-ai",
   "axios",
@@ -39,14 +38,19 @@ async function buildAll() {
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
+  
+  // Get all possible dependencies
   const allDeps = [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.devDependencies || {}),
   ];
+
+  // Create the externals list: anything NOT in the allowlist is external
   const externals = allDeps.filter((dep) => !allowlist.includes(dep));
-  // ensure nodemailer is always treated as external to avoid resolution issues
-  const alwaysExternal = ["nodemailer"];
-  const finalExternals = Array.from(new Set([...externals, ...alwaysExternal]));
+  
+  // FORCE nodemailer and other node-specific binary deps to be external
+  const forceExternal = ["nodemailer", "bufferutil", "utf-8-validate"];
+  const finalExternals = Array.from(new Set([...externals, ...forceExternal]));
 
   await esbuild({
     entryPoints: ["server/index.ts"],
@@ -58,8 +62,9 @@ async function buildAll() {
       "process.env.NODE_ENV": '"production"',
     },
     minify: true,
-    external: finalExternals,
+    external: finalExternals, // This tells esbuild: "Don't try to bundle these"
     logLevel: "info",
+    mainFields: ["module", "main"],
   });
 }
 
