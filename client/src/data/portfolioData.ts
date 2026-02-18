@@ -198,13 +198,13 @@ export const portfolioData = {
       },
       {
         id: 3,
-        title: "Why RegTech Solutions are Critical for Financial Crime Prevention",
-        excerpt: "Understanding how regulatory technology solutions help financial institutions combat money laundering, fraud, and other financial crimes more effectively.",
+        title: "The $43B “Phantom Bitcoin” Incident is a Wake-up Call for Compliance",
+        excerpt: "South Korean exchange Bithumb mistakenly credited hundreds of users with massive Bitcoin balances—totaling 620,000 BTC—instead of a small promotional reward",
         content: "Full article content here",
-        category: "RegTech",
-        publishedDate: "2024-12-08",
+        category: "DigitalAssets",
+        publishedDate: "2026-02-18",
         readTime: 5,
-        link: "https://linkedin.com/feed",
+        link: "https://www.linkedin.com/pulse/why-43b-phantom-bitcoin-incident-wake-up-call-neeraj-bansal-ac8kc/",
         author: "Neeraj Bansal"
       },
       {
