@@ -44,6 +44,9 @@ async function buildAll() {
     ...Object.keys(pkg.devDependencies || {}),
   ];
   const externals = allDeps.filter((dep) => !allowlist.includes(dep));
+  // ensure nodemailer is always treated as external to avoid resolution issues
+  const alwaysExternal = ["nodemailer"];
+  const finalExternals = Array.from(new Set([...externals, ...alwaysExternal]));
 
   await esbuild({
     entryPoints: ["server/index.ts"],
@@ -55,7 +58,7 @@ async function buildAll() {
       "process.env.NODE_ENV": '"production"',
     },
     minify: true,
-    external: externals,
+    external: finalExternals,
     logLevel: "info",
   });
 }
