@@ -209,13 +209,13 @@ export const portfolioData = {
       },
       {
         id: 4,
-        title: "Digital Transformation in Financial Crime Compliance",
-        excerpt: "A comprehensive guide on implementing digital transformation initiatives within compliance departments to enhance efficiency and reduce operational risk.",
+        title: "Identity Is Becoming Control Architecture — Not Just Login",
+        excerpt: "Sharing a perspective on how EU’s wallet model and Singapore’s Myinfo approach represent two different control architectures for digital trust.",
         content: "Full article content here",
-        category: "Digital Transformation",
-        publishedDate: "2024-11-30",
+        category: "Digital Identity",
+        publishedDate: "2026-02-24",
         readTime: 8,
-        link: "https://linkedin.com/feed",
+        link: "https://www.linkedin.com/pulse/identity-becoming-control-architecture-just-login-neeraj-bansal-memic",
         author: "Neeraj Bansal"
       },
       {
