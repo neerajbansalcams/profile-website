@@ -112,6 +112,7 @@ export const portfolioData = {
       "AML/KYC",
       "RegTech",
       "Digital Transformation",
+      "Digital Identity",
       "Compliance",
       "Fraud Prevention",
       "Fintech Regulation"
@@ -214,7 +215,7 @@ export const portfolioData = {
         content: "Full article content here",
         category: "Digital Identity",
         publishedDate: "2026-02-24",
-        readTime: 8,
+        readTime: 4,
         link: "https://www.linkedin.com/pulse/identity-becoming-control-architecture-just-login-neeraj-bansal-memic",
         author: "Neeraj Bansal"
       },
