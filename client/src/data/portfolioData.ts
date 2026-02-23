@@ -211,7 +211,7 @@ export const portfolioData = {
       {
         id: 4,
         title: "Identity Is Becoming Control Architecture — Not Just Login",
-        excerpt: "Sharing a perspective on how EU’s wallet model and Singapore’s Myinfo approach represent two different control architectures for digital trust.",
+        excerpt: "Sharing a perspective on how EU’s wallet model and Singapore’s Myinfo approach represent two different control architectures for Digital Trust.",
         content: "Full article content here",
         category: "Digital Identity",
         publishedDate: "2026-02-24",
