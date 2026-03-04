@@ -113,7 +113,7 @@ export const portfolioData = {
       "RegTech",
       "Digital Transformation",
       "Digital Identity",
-      "Data Integrity",
+      "Data Security",
       "Fraud Prevention",
       "Fintech Regulation"
     ],
