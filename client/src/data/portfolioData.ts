@@ -113,7 +113,7 @@ export const portfolioData = {
       "RegTech",
       "Digital Transformation",
       "Digital Identity",
-      "Compliance",
+      "Data Integrity",
       "Fraud Prevention",
       "Fintech Regulation"
     ],
@@ -221,13 +221,13 @@ export const portfolioData = {
       },
       {
         id: 5,
-        title: "Machine Learning in Transaction Monitoring: Benefits and Challenges",
-        excerpt: "Discover how machine learning models are improving transaction monitoring systems and the challenges organizations face in deployment.",
+        title: " 1 Billion Records Exposed... or was it? Lessons from the Adverse Media Screening",
+        excerpt: "The IDMERIT case study proves that in 2026, adverse media screening is no longer just about finding news—it’s about verifying it.",
         content: "Full article content here",
-        category: "RegTech",
-        publishedDate: "2024-11-22",
+        category: "Data Security",
+        publishedDate: "2026-03-04",
         readTime: 7,
-        link: "https://linkedin.com/feed",
+        link: "https://www.linkedin.com/pulse/when-data-breach-both-true-fake-lesson-adverse-media-screening-f3r3c/?trackingId=tyMazRMWTca6qFak1qIhgQ%3D%3D",
         author: "Neeraj Bansal"
       },
       {
