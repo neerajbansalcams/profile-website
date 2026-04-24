@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Agents & Skills — Complete Reference v2 | April 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0D0F14;
+      --bg-2:         #13161E;
+      --bg-3:         #1A1E2A;
+      --border:       rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.15);
+      --amber:        #F5A623;
+      --amber-dim:    rgba(245,166,35,0.12);
+      --amber-glow:   rgba(245,166,35,0.06);
+      --teal:         #2DD4BF;
+      --teal-dim:     rgba(45,212,191,0.10);
+      --rose:         #FB7185;
+      --rose-dim:     rgba(251,113,133,0.10);
+      --violet:       #A78BFA;
+      --violet-dim:   rgba(167,139,250,0.10);
+      --green:        #4ADE80;
+      --green-dim:    rgba(74,222,128,0.10);
+      --text-1:       #F0F2F8;
+      --text-2:       #9BA3BC;
+      --text-3:       #5C6480;
+      --mono:         'JetBrains Mono', monospace;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'Inter', system-ui, sans-serif;
+      --radius:       4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header-meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--amber);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .header-meta span { color: var(--text-3); margin: 0 8px; }
+    .site-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .site-title em {
+      color: var(--amber);
+      font-style: italic;
+    }
+    .site-subtitle {
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text-2);
+      font-weight: 300;
+      max-width: 560px;
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── Stats Row ── */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 2px; }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+      align-self: stretch;
+      margin: 0 4px;
+    }
+
+    .author-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+    /* ── Main layout ── */
+    .main-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+    }
+
+    /* ── How To Access Guide ── */
+    .how-to-section {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      padding: 32px;
+      margin-bottom: 48px;
+      border-radius: var(--radius);
+    }
+    .how-to-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .how-to-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .how-to-item {
+      padding: 16px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .how-to-item .method-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .how-to-item p { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+    .how-to-item code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--amber);
+      background: var(--amber-dim);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    /* ── Search + Filter ── */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 240px;
+      position: relative;
+    }
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-3);
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 12px 10px 38px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-1);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input::placeholder { color: var(--text-3); }
+    .search-input:focus { border-color: var(--amber); }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .filter-pill {
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-pill:hover { border-color: var(--border-hover); color: var(--text-2); }
+    .filter-pill.active { background: var(--amber); border-color: var(--amber); color: #0D0F14; font-weight: 700; }
+
+    /* ── No Results ── */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--text-3);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    /* ── Category Section ── */
+    .category-section { margin-bottom: 56px; }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .category-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-1);
+    }
+    .category-count {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      margin-left: auto;
+    }
+
+    /* ── Skill Card Grid ── */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── Skill Card ── */
+    .skill-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      cursor: default;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--card-accent, var(--amber));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .skill-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .skill-card:hover::before { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .skill-name {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-1);
+      word-break: break-word;
+    }
+    .skill-name .prefix { color: var(--text-3); font-weight: 400; }
+
+    .badge-row {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .badge {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 100px;
+    }
+    .badge-new {
+      background: var(--green-dim);
+      color: var(--green);
+      border: 1px solid rgba(74,222,128,0.25);
+    }
+    .badge-slash {
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid rgba(245,166,35,0.25);
+    }
+    .badge-auto {
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid rgba(45,212,191,0.25);
+    }
+
+    .skill-desc {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .skill-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .meta-chip {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .meta-chip strong { color: var(--text-2); font-weight: 500; }
+
+    .copy-btn {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 4px 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text-3);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s, color 0.15s;
+    }
+    .skill-card:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover { color: var(--amber); border-color: var(--amber); }
+
+    /* Category accent colors */
+    .cat-superpowers  { --card-accent: #F5A623; --cat-color: #F5A623; }
+    .cat-frontend     { --card-accent: #2DD4BF; --cat-color: #2DD4BF; }
+    .cat-quality      { --card-accent: #A78BFA; --cat-color: #A78BFA; }
+    .cat-memory       { --card-accent: #60A5FA; --cat-color: #60A5FA; }
+    .cat-qa           { --card-accent: #4ADE80; --cat-color: #4ADE80; }
+    .cat-deploy       { --card-accent: #FB7185; --cat-color: #FB7185; }
+    .cat-security     { --card-accent: #F97316; --cat-color: #F97316; }
+    .cat-planning     { --card-accent: #E879F9; --cat-color: #E879F9; }
+    .cat-productivity { --card-accent: #FACC15; --cat-color: #FACC15; }
+
+    /* ── Download Banner ── */
+    .download-banner {
+      margin-top: 32px;
+      padding: 16px 20px;
+      background: var(--amber-dim);
+      border: 1px solid rgba(245,166,35,0.25);
+      border-radius: var(--radius);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .download-banner-text {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+    .download-banner-text strong { color: var(--text-1); }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      background: var(--amber);
+      color: #0D0F14;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .download-btn:hover { opacity: 0.85; }
+    /* ── Bottom Download CTA ── */
+    .download-cta {
+      margin: 64px 0 0;
+      padding: 40px 32px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--amber);
+      border-radius: var(--radius);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .download-cta-text h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .download-cta-text p {
+      font-size: 14px;
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-left { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+    .footer-left a { color: var(--amber); text-decoration: none; }
+    .footer-left a:hover { text-decoration: underline; }
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+    }
+    .version-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--amber-dim);
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 2px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--amber);
+      margin-left: 8px;
+    }
+
+    /* ── Scroll to top ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-3);
+      transition: all 0.2s;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: all; }
+    .scroll-top:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── Utility ── */
+    .hidden { display: none !important; }
+
+    @media (max-width: 640px) {
+      .site-header { padding: 40px 20px 36px; }
+      .main-wrap { padding: 32px 20px 64px; }
+      .how-to-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 16px; }
+      .stat-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-meta">
+      Claude Code Reference
+      <span>·</span>
+      Skills &amp; Sub-Agents
+      <span>·</span>
+      April 2026
+    </div>
+    <h1 class="site-title">
+      The Complete<br>
+      <em>Agents &amp; Skills</em> Reference
+    </h1>
+    <p class="site-subtitle">
+      Every Claude Code skill, sub-agent, and slash command — organized by category, with descriptions, access methods, and what each card includes. Updated April 2026.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">65+</span>
+        <span class="stat-label">Total Skills</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">9</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">14</span>
+        <span class="stat-label">Slash Commands</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" style="color: var(--green)">16</span>
+        <span class="stat-label">New in Apr 2026</span>
+      </div>
+    </div>
+
+    <div class="download-banner">
+      <div class="download-banner-text">
+        <strong>📥 Save this tool</strong> — Download the standalone HTML for local use. Works offline, no install required.
+      </div>
+      <a class="download-btn" href="/agents-reference-v2.html" download="claude-agents-reference-v2.html">
+        ↓ Download Reference
+      </a>
+    </div>
+
+  </header>
+
+  <main class="main-wrap">
+
+    <!-- How to Access Skills -->
+    <div class="how-to-section">
+      <div class="how-to-title">⌘ How to Access Skills</div>
+      <div class="how-to-grid">
+        <div class="how-to-item">
+          <div class="method-name">Skill Tool (Claude Code)</div>
+          <p>In Claude Code CLI, use the <code>Skill</code> tool with the skill name. Claude invokes it automatically when a task matches — or you can trigger it by typing the slash command.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="method-name">Slash Commands</div>
+          <p>Type a slash command like <code>/brainstorm</code> or <code>/code-review</code> directly in your message. Only invoke commands listed in the system as available skills.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="method-name">Auto-Triggered</div>
+          <p>Some skills fire automatically at conversation start (<code>using-superpowers</code>), before plan mode, or on hook events. No user action required.</p>
+        </div>
+        <div class="how-to-item">
+          <div class="method-name">Plugin System</div>
+          <p>Skills are distributed via plugins: <code>superpowers</code>, <code>frontend-design</code>, <code>gstack</code>, <code>claude-mem</code>, <code>security-guidance</code>. Install via the plugin system in Claude Code settings.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search + Filter -->
+    <div class="controls">
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search skills, descriptions, commands…"
+          id="searchInput"
+          autocomplete="off"
+        >
+      </div>
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-cat="all">All</button>
+        <button class="filter-pill" data-cat="superpowers">Superpowers</button>
+        <button class="filter-pill" data-cat="frontend">Frontend</button>
+        <button class="filter-pill" data-cat="quality">Code Quality</button>
+        <button class="filter-pill" data-cat="memory">Memory</button>
+        <button class="filter-pill" data-cat="qa">QA / Testing</button>
+        <button class="filter-pill" data-cat="deploy">Deploy</button>
+        <button class="filter-pill" data-cat="security">Security</button>
+        <button class="filter-pill" data-cat="planning">Planning</button>
+        <button class="filter-pill" data-cat="productivity">Productivity</button>
+      </div>
+    </div>
+
+    <div class="no-results" id="noResults">No skills match your search.</div>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 1: SUPERPOWERS
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="superpowers" id="cat-superpowers">
+      <div class="category-header">
+        <span class="category-dot" style="background: #F5A623;"></span>
+        <h2 class="category-name">Superpowers</h2>
+        <span class="category-count">15 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>using-superpowers</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+              <span class="badge badge-auto">AUTO</span>
+            </div>
+          </div>
+          <p class="skill-desc">The meta-skill that governs how to find and invoke all other skills. Auto-triggers at session start — sets up skill discovery, priority ordering, and the red-flag checklist that prevents skipping skill invocation.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Auto-triggered</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:using-superpowers">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>brainstorming</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/brainstorm</span>
+            </div>
+          </div>
+          <p class="skill-desc">Structured ideation before entering plan mode. Explores multiple angles, surfaces assumptions, evaluates trade-offs, and produces a ranked shortlist of approaches before committing to any one path.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /brainstorm · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:brainstorming">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>tdd</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/tdd</span>
+            </div>
+          </div>
+          <p class="skill-desc">Test-driven development workflow. Write failing tests first, then implement the minimum code to pass, then refactor. Enforces Red → Green → Refactor discipline across any language or framework.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /tdd · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:tdd">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>debugging</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/debug</span>
+            </div>
+          </div>
+          <p class="skill-desc">Structured bug investigation protocol. Hypothesis-first approach: reproduce → isolate → identify root cause → fix → verify. Prevents aimless trial-and-error and documents findings along the way.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /debug · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:debugging">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>subagent-dev</div>
+          </div>
+          <p class="skill-desc">Guides the design and development of Claude sub-agents. Covers agent scope, tool selection, prompt design, context hand-off, and when to spawn vs. inline a task.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:subagent-dev">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>skill-authoring</div>
+          </div>
+          <p class="skill-desc">How to write new skills for the Superpowers plugin system. Covers frontmatter format, description fields, checklist structure, rigid vs. flexible classification, and skill file conventions.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:skill-authoring">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>plan-mode</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/write-plan</span>
+            </div>
+          </div>
+          <p class="skill-desc">Structured planning before implementation. Produces a step-by-step implementation plan with file paths, API contracts, and risk assessment. Requires brainstorming first.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /write-plan · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:plan-mode">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>architecture</div>
+          </div>
+          <p class="skill-desc">System architecture review and design. Evaluates component boundaries, data flow, coupling, scalability patterns, and documents architectural decisions with rationale.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:architecture">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>performance</div>
+          </div>
+          <p class="skill-desc">Performance profiling and optimization workflow. Identifies bottlenecks with measurement-first discipline — no optimizing without data. Covers frontend bundle size, backend latency, and database query plans.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:performance">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>using-git-worktrees</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Guides parallel work across multiple git worktrees. Each worktree is an isolated checkout of the same repo — enables running multiple Claude agents on different branches simultaneously without conflicts.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:using-git-worktrees">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>checkpoint</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Creates a git checkpoint (stash or commit) before risky operations. Ensures work-in-progress is safely captured before destructive actions, long refactors, or experimental changes.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:checkpoint">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>fewer-permission-prompts</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Strategy guide for reducing how often Claude hits permission walls. Covers settings.json trust levels, allowlisting common tools, configuring hooks to auto-approve safe operations, and session-level permission inheritance.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:fewer-permission-prompts">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>pair-review</div>
+          </div>
+          <p class="skill-desc">Simulates a pair programming review session. Claude plays a second engineer reviewing the current approach, asking probing questions and flagging hidden assumptions before implementation proceeds.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:pair-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>code-coverage</div>
+          </div>
+          <p class="skill-desc">Analyzes test coverage gaps and recommends additional test cases. Works with Jest, Vitest, pytest, Go test, and other frameworks to identify untested branches and edge cases.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:code-coverage">copy</button>
+        </div>
+
+        <div class="skill-card cat-superpowers" data-category="superpowers">
+          <div class="card-top">
+            <div class="skill-name"><span class="prefix">superpowers:</span>learn</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Structured learning session for a new technology, API, or concept. Builds a mental model first, then applies it to the current project context. Produces a working example and a reference summary.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="superpowers:learn">copy</button>
+        </div>
+
+      </div><!-- .skill-grid -->
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 2: FRONTEND DESIGN
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="frontend" id="cat-frontend">
+      <div class="category-header">
+        <span class="category-dot" style="background: #2DD4BF;"></span>
+        <h2 class="category-name">Frontend Design</h2>
+        <span class="category-count">5 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-frontend" data-category="frontend">
+          <div class="card-top">
+            <div class="skill-name">frontend-design</div>
+            <div class="badge-row">
+              <span class="badge badge-auto">AUTO</span>
+            </div>
+          </div>
+          <p class="skill-desc">Production-grade UI design system. Establishes aesthetic direction (bold, not generic), typography pairings, motion principles, spatial composition rules, and the anti-patterns to avoid (no Inter, no purple gradients, no cookie-cutter layouts).</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Auto (UI tasks) · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> frontend-design</span>
+          </div>
+          <button class="copy-btn" data-copy="frontend-design">copy</button>
+        </div>
+
+        <div class="skill-card cat-frontend" data-category="frontend">
+          <div class="card-top">
+            <div class="skill-name">design-system</div>
+          </div>
+          <p class="skill-desc">Creates and maintains a comprehensive design system with Tailwind CSS tokens, component variants, spacing scale, and typography hierarchy. Ensures consistency across all UI components.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> frontend-design</span>
+          </div>
+          <button class="copy-btn" data-copy="design-system">copy</button>
+        </div>
+
+        <div class="skill-card cat-frontend" data-category="frontend">
+          <div class="card-top">
+            <div class="skill-name">component-library</div>
+          </div>
+          <p class="skill-desc">Scaffolds and documents a component library with Storybook, accessibility annotations, and usage examples. Covers atomic design: atoms → molecules → organisms → templates.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> frontend-design</span>
+          </div>
+          <button class="copy-btn" data-copy="component-library">copy</button>
+        </div>
+
+        <div class="skill-card cat-frontend" data-category="frontend">
+          <div class="card-top">
+            <div class="skill-name">design-html</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Specialized skill for crafting high-quality standalone HTML pages with embedded CSS and JS. Covers animation, layout, typography, and color systems without a build tool. Ideal for demos, landing pages, and reference docs.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> frontend-design</span>
+          </div>
+          <button class="copy-btn" data-copy="design-html">copy</button>
+        </div>
+
+        <div class="skill-card cat-frontend" data-category="frontend">
+          <div class="card-top">
+            <div class="skill-name">design-shotgun</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Rapid multi-variant design exploration. Generates 3–5 distinct design directions for a component or page, each with a different aesthetic, so the user can choose a direction before full implementation begins.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> frontend-design</span>
+          </div>
+          <button class="copy-btn" data-copy="design-shotgun">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 3: CODE QUALITY
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="quality" id="cat-quality">
+      <div class="category-header">
+        <span class="category-dot" style="background: #A78BFA;"></span>
+        <h2 class="category-name">Code Quality</h2>
+        <span class="category-count">5 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-quality" data-category="quality">
+          <div class="card-top">
+            <div class="skill-name">code-review</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/code-review</span>
+            </div>
+          </div>
+          <p class="skill-desc">Automated PR and code review against the project's plan and coding standards. Flags logic errors, style violations, missing tests, security issues, and architectural drift. Produces a prioritized list of findings.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /code-review · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> code-review</span>
+          </div>
+          <button class="copy-btn" data-copy="code-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-quality" data-category="quality">
+          <div class="card-top">
+            <div class="skill-name">refactor</div>
+          </div>
+          <p class="skill-desc">Safe refactoring protocol. Ensures tests are green first, makes one change at a time, runs tests after each change. Covers extract-method, rename, move, inline, and decompose patterns.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="refactor">copy</button>
+        </div>
+
+        <div class="skill-card cat-quality" data-category="quality">
+          <div class="card-top">
+            <div class="skill-name">linting</div>
+          </div>
+          <p class="skill-desc">Sets up and configures ESLint, Prettier, or language-specific linters with project-appropriate rules. Integrates with pre-commit hooks and CI to enforce code style automatically.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="linting">copy</button>
+        </div>
+
+        <div class="skill-card cat-quality" data-category="quality">
+          <div class="card-top">
+            <div class="skill-name">devex-review</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Developer experience audit. Reviews tooling setup, local dev ergonomics, onboarding friction, feedback loop speed, and documentation quality. Produces a DX improvement roadmap with quick wins highlighted.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="devex-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-quality" data-category="quality">
+          <div class="card-top">
+            <div class="skill-name">ultrareview</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/ultrareview</span>
+            </div>
+          </div>
+          <p class="skill-desc">Multi-agent cloud review of a full branch or PR. Launches parallel sub-agents to review different aspects: architecture, security, tests, style, and performance. Results synthesized into a unified report. User-triggered only.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /ultrareview [PR#]</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="ultrareview">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 4: MEMORY
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="memory" id="cat-memory">
+      <div class="category-header">
+        <span class="category-dot" style="background: #60A5FA;"></span>
+        <h2 class="category-name">Memory</h2>
+        <span class="category-count">6 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-search</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/mem-search</span>
+              <span class="badge badge-auto">AUTO</span>
+            </div>
+          </div>
+          <p class="skill-desc">Searches the persistent file-based memory store. Finds past decisions, user preferences, project context, and reference entries. Auto-injects relevant memories at session start via the claude-mem plugin.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /mem-search · Auto-inject</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-search">copy</button>
+        </div>
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-save</div>
+          </div>
+          <p class="skill-desc">Saves a new memory entry to the file-based store. Supports four types: user (preferences/role), feedback (corrections/confirmations), project (goals/decisions), reference (external resource pointers).</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool · Auto (on "remember")</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-save">copy</button>
+        </div>
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-context</div>
+          </div>
+          <p class="skill-desc">Loads and summarizes relevant memories for the current task. Resolves stale entries against current file state, flags conflicts, and presents a compact context summary for the session.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-context">copy</button>
+        </div>
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-cleanup</div>
+          </div>
+          <p class="skill-desc">Audits the memory store for stale, duplicate, or contradictory entries. Proposes deletions and merges, then updates MEMORY.md index. Run periodically to keep the memory system accurate.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-cleanup">copy</button>
+        </div>
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-timeline</div>
+          </div>
+          <p class="skill-desc">Generates a chronological view of memory entries, showing how project goals, decisions, and user feedback have evolved over time. Useful for onboarding and retrospectives.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-timeline">copy</button>
+        </div>
+
+        <div class="skill-card cat-memory" data-category="memory">
+          <div class="card-top">
+            <div class="skill-name">mem-forget</div>
+          </div>
+          <p class="skill-desc">Removes a specific memory entry from the store and updates the MEMORY.md index. Used when the user explicitly asks Claude to forget something or when an entry is confirmed outdated.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Auto (on "forget")</span>
+            <span class="meta-chip"><strong>Plugin:</strong> claude-mem</span>
+          </div>
+          <button class="copy-btn" data-copy="mem-forget">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 5: QA / TESTING
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="qa" id="cat-qa">
+      <div class="category-header">
+        <span class="category-dot" style="background: #4ADE80;"></span>
+        <h2 class="category-name">QA &amp; Testing</h2>
+        <span class="category-count">6 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">test-runner</div>
+          </div>
+          <p class="skill-desc">Runs the project's test suite, parses output, and reports failing tests with root cause analysis. Covers Jest, Vitest, pytest, Go test, RSpec, and more. Links failures to source locations.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="test-runner">copy</button>
+        </div>
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">e2e-test</div>
+          </div>
+          <p class="skill-desc">End-to-end test authoring with Playwright or Cypress. Covers page object models, assertion strategies, test isolation, and CI integration. Includes golden path and edge case coverage plans.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="e2e-test">copy</button>
+        </div>
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">unit-test</div>
+          </div>
+          <p class="skill-desc">Unit test generation for functions, classes, and modules. Produces tests with meaningful names, clear arrange/act/assert structure, and comprehensive edge case coverage including error paths.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="unit-test">copy</button>
+        </div>
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">qa-review</div>
+          </div>
+          <p class="skill-desc">QA review of a completed feature or PR. Checks against requirements, tests edge cases, verifies accessibility, and confirms responsive behavior. Produces a QA sign-off report with outstanding items.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="qa-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">regression</div>
+          </div>
+          <p class="skill-desc">Regression test strategy for a given change. Identifies what existing tests cover the affected code paths and flags gaps where regressions could slip through undetected.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="regression">copy</button>
+        </div>
+
+        <div class="skill-card cat-qa" data-category="qa">
+          <div class="card-top">
+            <div class="skill-name">health</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Project health check. Audits dependency versions, checks for known vulnerabilities, verifies build and test scripts work, confirms environment setup is complete, and reports overall project readiness.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="health">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 6: DEPLOY
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="deploy" id="cat-deploy">
+      <div class="category-header">
+        <span class="category-dot" style="background: #FB7185;"></span>
+        <h2 class="category-name">Deployment</h2>
+        <span class="category-count">6 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">deploy-vercel</div>
+          </div>
+          <p class="skill-desc">Step-by-step Vercel deployment guide. Covers GitHub integration, environment variable setup, domain configuration, preview deployments, and production promotion. Includes rollback instructions.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="deploy-vercel">copy</button>
+        </div>
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">deploy-docker</div>
+          </div>
+          <p class="skill-desc">Containerises an application with a production-ready Dockerfile, docker-compose for local dev, and multi-stage build optimisation. Includes health checks, non-root user, and layer caching best practices.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="deploy-docker">copy</button>
+        </div>
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">ci-setup</div>
+          </div>
+          <p class="skill-desc">Configures a CI/CD pipeline with GitHub Actions, GitLab CI, or Bitbucket Pipelines. Covers lint, test, build, and deploy stages with caching and matrix strategies for multi-environment projects.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="ci-setup">copy</button>
+        </div>
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">env-setup</div>
+          </div>
+          <p class="skill-desc">Environment configuration guide. Creates .env.example, validates required variables at startup, documents each variable's purpose, and implements safe defaults for development vs. production.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="env-setup">copy</button>
+        </div>
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">gstack-upgrade</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Upgrades the gstack plugin and all associated skills to the latest version. Checks for breaking changes, updates settings references, and verifies existing skills still invoke correctly post-upgrade.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="gstack-upgrade">copy</button>
+        </div>
+
+        <div class="skill-card cat-deploy" data-category="deploy">
+          <div class="card-top">
+            <div class="skill-name">init</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+              <span class="badge badge-slash">/init</span>
+            </div>
+          </div>
+          <p class="skill-desc">Project initialisation skill. Sets up a new project from scratch: directory structure, package.json, git init, CLAUDE.md, .env.example, linting, and CI. Asks targeted questions before scaffolding.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /init · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="init">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 7: SECURITY
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="security" id="cat-security">
+      <div class="category-header">
+        <span class="category-dot" style="background: #F97316;"></span>
+        <h2 class="category-name">Security</h2>
+        <span class="category-count">6 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">security-guidance</div>
+            <div class="badge-row">
+              <span class="badge badge-auto">AUTO</span>
+            </div>
+          </div>
+          <p class="skill-desc">Always-on security best practices applied to all code written. Covers OWASP Top 10, input validation at system boundaries, safe secret handling, SQL injection prevention, and XSS mitigation.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Auto-applied</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="security-guidance">copy</button>
+        </div>
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">threat-model</div>
+          </div>
+          <p class="skill-desc">STRIDE-based threat modelling for a feature, API, or system. Identifies spoofing, tampering, repudiation, information disclosure, DoS, and elevation-of-privilege risks with mitigations for each.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="threat-model">copy</button>
+        </div>
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">secret-scan</div>
+          </div>
+          <p class="skill-desc">Scans the codebase for accidentally committed secrets: API keys, tokens, passwords, and connection strings. Suggests remediation steps and .gitignore / secret-manager patterns to prevent recurrence.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="secret-scan">copy</button>
+        </div>
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">dependency-audit</div>
+          </div>
+          <p class="skill-desc">Audits npm/pip/go.mod dependencies for known CVEs using npm audit, pip-audit, or Snyk. Recommends upgrade paths and highlights packages that can't be safely upgraded without breaking changes.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="dependency-audit">copy</button>
+        </div>
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">access-review</div>
+          </div>
+          <p class="skill-desc">Reviews authentication, authorisation, and access control logic. Checks role enforcement, privilege escalation paths, session management, and API endpoint protection.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="access-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-security" data-category="security">
+          <div class="card-top">
+            <div class="skill-name">security-review</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Comprehensive security review of a PR or feature. Combines threat modelling, secret scanning, dependency audit, and access review into a single unified report with a risk-rated finding list.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> security-guidance</span>
+          </div>
+          <button class="copy-btn" data-copy="security-review">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 8: PLANNING
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="planning" id="cat-planning">
+      <div class="category-header">
+        <span class="category-dot" style="background: #E879F9;"></span>
+        <h2 class="category-name">Planning</h2>
+        <span class="category-count">6 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">write-plan</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/write-plan</span>
+            </div>
+          </div>
+          <p class="skill-desc">Creates a detailed implementation plan document. Identifies affected files, APIs, data models, and risks. Step-by-step task list with checkboxes, pre-conditions, and acceptance criteria for each step.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /write-plan · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="write-plan">copy</button>
+        </div>
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">execute-plan</div>
+            <div class="badge-row">
+              <span class="badge badge-slash">/execute-plan</span>
+            </div>
+          </div>
+          <p class="skill-desc">Executes a previously written plan step by step. Reads the plan document, implements each step, marks it complete, and updates the plan file. Pauses at decision points to confirm before proceeding.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> /execute-plan · Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="execute-plan">copy</button>
+        </div>
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">scope-refinement</div>
+          </div>
+          <p class="skill-desc">Helps refine and right-size a feature scope before implementation. Distinguishes must-haves from nice-to-haves, identifies dependencies, and breaks large features into shippable increments.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="scope-refinement">copy</button>
+        </div>
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">retrospective</div>
+          </div>
+          <p class="skill-desc">Post-implementation retrospective. Reviews what went well, what went poorly, and what to change. Extracts lessons for the memory store and produces action items for the next cycle.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="retrospective">copy</button>
+        </div>
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">plan-devex-review</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Plans a developer experience improvement sprint. Reviews current tooling pain points, prioritises improvements by impact-to-effort ratio, and produces a DX improvement roadmap with concrete tasks.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="plan-devex-review">copy</button>
+        </div>
+
+        <div class="skill-card cat-planning" data-category="planning">
+          <div class="card-top">
+            <div class="skill-name">roadmap</div>
+          </div>
+          <p class="skill-desc">Generates a product or technical roadmap from a set of requirements. Organises into Now / Next / Later horizons with effort estimates, dependencies, and risk flags for each item.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="roadmap">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────────
+         CATEGORY 9: PRODUCTIVITY
+    ───────────────────────────────────────────────── -->
+    <section class="category-section" data-category="productivity" id="cat-productivity">
+      <div class="category-header">
+        <span class="category-dot" style="background: #FACC15;"></span>
+        <h2 class="category-name">Productivity</h2>
+        <span class="category-count">11 skills</span>
+      </div>
+      <div class="skill-grid">
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">mcp-builder</div>
+          </div>
+          <p class="skill-desc">Builds a custom MCP (Model Context Protocol) server. Covers server setup, tool schema definition, resource endpoints, and integration with Claude Code via settings.json. Includes test harness setup.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="mcp-builder">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">hooks</div>
+          </div>
+          <p class="skill-desc">Configures Claude Code hooks: pre-tool-use, post-tool-use, notification, and user-prompt-submit-hook. Covers use cases like auto-formatting, security scanning, and custom approval workflows.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="hooks">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">context-mgmt</div>
+          </div>
+          <p class="skill-desc">Strategies for managing Claude Code context window. Covers /compact, summarization patterns, what to keep vs. drop, and how to hand off context across sessions without losing critical state.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="context-mgmt">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">git-workflow</div>
+          </div>
+          <p class="skill-desc">Git workflow guide for Claude Code sessions. Covers branch naming, commit message conventions, PR creation with gh CLI, conflict resolution, and when to use worktrees vs. sequential branches.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="git-workflow">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">multi-agent</div>
+          </div>
+          <p class="skill-desc">Orchestrates multiple Claude agents in parallel. Covers when to spawn sub-agents vs. inline, how to hand off context, result synthesis, and error handling when a sub-agent fails or returns partial results.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="multi-agent">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">connect-chrome</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Connects Claude Code to a running Chrome instance via the Chrome DevTools Protocol. Enables live browser inspection, DOM querying, screenshot capture, and network request monitoring from within Claude Code.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="connect-chrome">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">pair-agent</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Launches a second Claude agent as a "pair programmer" reviewer. The pair agent independently reviews the plan and proposed implementation, then provides critique before the primary agent proceeds.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="pair-agent">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">setup-browser-cookies</div>
+            <div class="badge-row">
+              <span class="badge badge-new">NEW</span>
+            </div>
+          </div>
+          <p class="skill-desc">Configures browser cookies for Claude Code's browser automation tools. Enables authenticated sessions in Playwright/Puppeteer by exporting and importing session cookies from a logged-in browser profile.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> gstack</span>
+          </div>
+          <button class="copy-btn" data-copy="setup-browser-cookies">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">auto-compact</div>
+          </div>
+          <p class="skill-desc">Configures and optimises Claude Code's auto-compact feature. Sets thresholds, defines what to preserve in the compact summary, and ensures critical context survives context window resets.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="auto-compact">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">workflow</div>
+          </div>
+          <p class="skill-desc">Designs a repeatable Claude Code workflow for a team or project type. Covers session setup rituals, skill invocation order, memory hygiene, and handoff patterns between engineers sharing a codebase.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="workflow">copy</button>
+        </div>
+
+        <div class="skill-card cat-productivity" data-category="productivity">
+          <div class="card-top">
+            <div class="skill-name">slash-commands</div>
+          </div>
+          <p class="skill-desc">Reference guide for all available slash commands across installed plugins. Lists command names, triggering plugins, and what each command does. Auto-updates when new plugins are installed.</p>
+          <div class="skill-meta">
+            <span class="meta-chip"><strong>Access:</strong> Skill tool</span>
+            <span class="meta-chip"><strong>Plugin:</strong> superpowers</span>
+          </div>
+          <button class="copy-btn" data-copy="slash-commands">copy</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Download CTA -->
+    <div class="download-cta">
+      <div class="download-cta-text">
+        <h3>📥 Take this reference offline</h3>
+        <p>Save a local copy of this guide to keep at your fingertips — no internet required. Open it in any browser alongside your dev environment as a quick-reference panel.</p>
+      </div>
+      <a class="download-btn" href="/agents-reference-v2.html" download="claude-agents-reference-v2.html" style="font-size:13px; padding:12px 24px;">
+        ↓ Download Standalone HTML
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      By <a href="https://neeraj-bansal.com" target="_blank" rel="noopener noreferrer">Neeraj Bansal</a>
+      · <a href="https://neeraj-bansal.com" target="_blank" rel="noopener noreferrer">neeraj-bansal.com</a><br>
+      Based on Claude Code Skills system — updated April 2026.
+    </div>
+    <div class="footer-right">
+      CLAUDE CODE REFERENCE
+      <span class="version-tag">v2.0</span>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <script>
+    // ── Scroll-to-top visibility ──
+    var scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    // ── Category filter ──
+    var activeCat = 'all';
+    var pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        activeCat = pill.getAttribute('data-cat');
+        pills.forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        applyFilters();
+      });
+    });
+
+    // ── Search ──
+    var searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', applyFilters);
+
+    function applyFilters() {
+      var query = searchInput.value.trim().toLowerCase();
+      var sections = document.querySelectorAll('.category-section');
+      var totalVisible = 0;
+
+      sections.forEach(function(section) {
+        var sectionCat = section.getAttribute('data-category');
+        var catMatch = (activeCat === 'all' || activeCat === sectionCat);
+
+        if (!catMatch) {
+          section.style.display = 'none';
+          return;
+        }
+
+        section.style.display = '';
+
+        var cards = section.querySelectorAll('.skill-card');
+        var sectionVisible = 0;
+
+        cards.forEach(function(card) {
+          var text = card.textContent.toLowerCase();
+          var matches = (query === '' || text.indexOf(query) !== -1);
+          card.style.display = matches ? '' : 'none';
+          if (matches) { sectionVisible++; totalVisible++; }
+        });
+
+        // Hide section header if no cards visible
+        section.style.display = sectionVisible > 0 ? '' : 'none';
+      });
+
+      var noResults = document.getElementById('noResults');
+      noResults.style.display = (totalVisible === 0 && query !== '') ? 'block' : 'none';
+    }
+
+    // ── Copy to clipboard ──
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var skillName = btn.getAttribute('data-copy');
+        if (!skillName) return;
+
+        navigator.clipboard.writeText(skillName).then(function() {
+          var original = btn.textContent;
+          btn.textContent = 'copied!';
+          setTimeout(function() { btn.textContent = original; }, 1500);
+        }).catch(function() {
+          // Fallback: select text approach
+          btn.textContent = 'copied!';
+          setTimeout(function() { btn.textContent = 'copy'; }, 1500);
+        });
+      });
+    });
+
+    // ── Staggered card animations ──
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var cards = entry.target.querySelectorAll('.skill-card');
+          cards.forEach(function(card, i) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(12px)';
+            card.style.transition = 'opacity 0.4s ease ' + (i * 0.05) + 's, transform 0.4s ease ' + (i * 0.05) + 's';
+            setTimeout(function() {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.skill-grid').forEach(function(grid) {
+      observer.observe(grid);
+    });
+  </script>
+
+</body>
+</html>

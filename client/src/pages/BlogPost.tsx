@@ -1,62 +1,115 @@
-import { useRoute } from "wouter";
-import { portfolioData } from "@/data/portfolioData"; 
+import { useRoute, Link } from "wouter";
+import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import { portfolioData } from "@/data/portfolioData";
 import NotFound from "./not-found";
 
 const BlogPost = () => {
-  // 1. Explicitly define the expected route parameters for TypeScript
   const [match, params] = useRoute<{ slug: string }>("/blog/:slug");
 
-  // 2. Comprehensive check to satisfy the Vercel build environment
-  if (!match || !params?.slug) {
-    return <NotFound />;
-  }
+  if (!match || !params?.slug) return <NotFound />;
 
-  // 3. Find the article matching the current URL slug
-  const article = portfolioData.blog.articles.find((a) => 
-    a.link === `/blog/${params.slug}`
-  );
+  const articles = portfolioData.blog.articles;
+  const article = articles.find((a) => a.link === `/blog/${params.slug}`);
 
-  // 4. Handle cases where the slug exists but doesn't match an article
-  if (!article || !article.content) {
-    return <NotFound />;
-  }
+  if (!article || !article.content) return <NotFound />;
+
+  const internalArticles = articles.filter((a) => a.link.startsWith("/blog/"));
+  const currentIndex = internalArticles.findIndex((a) => a.link === article.link);
+  const prevArticle = currentIndex > 0 ? internalArticles[currentIndex - 1] : null;
+  const nextArticle = currentIndex < internalArticles.length - 1 ? internalArticles[currentIndex + 1] : null;
 
   return (
-    <article className="min-h-screen bg-background py-20">
-      <div className="container mx-auto px-6 max-w-4xl">
-        {/* Breadcrumb/Back link can go here */}
-        
-        <header className="mb-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-            {article.title}
-          </h1>
-          <div className="flex justify-center items-center text-gray-400 text-sm">
-            <span>{new Date(article.publishedDate).toLocaleDateString("en-US", { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
-            })}</span>
+    <div className="blog-article-page">
+
+      {/* Top navigation bar */}
+      <nav className="blog-nav sticky top-0 z-50">
+        <div style={{ maxWidth: "720px", margin: "0 auto", padding: "0 1.5rem", height: "52px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Link href="/#blog">
+            <a className="blog-nav" style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+              <ArrowLeft size={13} />
+              All Articles
+            </a>
+          </Link>
+          <span className="nav-category">{article.category}</span>
+        </div>
+      </nav>
+
+      {/* Article */}
+      <article style={{ maxWidth: "720px", margin: "0 auto", padding: "0 1.5rem 6rem" }}>
+
+        {/* Header */}
+        <header className="blog-header" style={{ paddingTop: "3.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: "1.25rem" }}>
+            <span className="blog-category-pill">{article.category}</span>
             {article.readTime && (
-              <>
-                <span className="mx-3">•</span>
-                <span>{article.readTime} min read</span>
-              </>
+              <span className="blog-readtime">
+                <Clock size={11} />
+                {article.readTime} min read
+              </span>
             )}
+          </div>
+
+          <h1 className="blog-title">{article.title}</h1>
+
+          {article.excerpt && (
+            <p className="blog-excerpt">{article.excerpt}</p>
+          )}
+
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div className="blog-author-avatar">NB</div>
+            <div>
+              <div className="blog-author-name">{article.author}</div>
+              <div className="blog-author-date" style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                <Calendar size={10} />
+                {new Date(article.publishedDate).toLocaleDateString("en-US", {
+                  year: "numeric", month: "long", day: "numeric",
+                })}
+              </div>
+            </div>
           </div>
         </header>
 
-        <hr className="border-white/10 mb-12" />
-
-        {/* Content Area */}
-        <div 
-          className="prose prose-invert prose-primary max-w-none 
-                     prose-headings:font-heading prose-headings:font-bold 
-                     prose-p:text-gray-300 prose-p:leading-relaxed 
-                     prose-strong:text-primary prose-a:text-primary"
-          dangerouslySetInnerHTML={{ __html: article.content }} 
+        {/* Body — content is static, hardcoded in portfolioData.ts (trusted source) */}
+        <div
+          className="blog-content"
+          style={{ paddingTop: "2.5rem" }}
+          dangerouslySetInnerHTML={{ __html: article.content }}
         />
-      </div>
-    </article>
+
+        {/* Prev / Next navigation */}
+        {(prevArticle || nextArticle) && (
+          <div className="blog-prevnext" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+            {prevArticle ? (
+              <Link href={prevArticle.link}>
+                <a>
+                  <span className="pn-label"><ArrowLeft size={11} /> Previous</span>
+                  <span className="pn-title">{prevArticle.title}</span>
+                </a>
+              </Link>
+            ) : <div />}
+
+            {nextArticle ? (
+              <Link href={nextArticle.link}>
+                <a style={{ textAlign: "right" }}>
+                  <span className="pn-label" style={{ justifyContent: "flex-end" }}>Next <ArrowRight size={11} /></span>
+                  <span className="pn-title">{nextArticle.title}</span>
+                </a>
+              </Link>
+            ) : <div />}
+          </div>
+        )}
+
+        {/* Back to all articles */}
+        <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
+          <Link href="/#blog">
+            <a className="back-link">
+              <ArrowLeft size={12} />
+              Back to all articles
+            </a>
+          </Link>
+        </div>
+      </article>
+    </div>
   );
 };
 
