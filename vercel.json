@@ -11,8 +11,11 @@
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "server/index.ts" },
-    { "source": "/((?!assets/|favicon_io/).*)", "destination": "/index.html" }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "server/index.ts" },
+    { "src": "/claude-agent-tsunami", "headers": { "Location": "/blog/claude-agent-tsunami" }, "status": 301 },
+    { "src": "/stop-prompting-start-orchestrating", "headers": { "Location": "/blog/stop-prompting-start-orchestrating" }, "status": 301 },
+    { "src": "/claude-agents-in-my-workflow", "headers": { "Location": "/blog/claude-agents-in-my-workflow" }, "status": 301 },
+    { "src": "/((?!assets/|favicon_io/).*)", "dest": "/index.html" }
   ]
 }
