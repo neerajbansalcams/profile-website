@@ -12,6 +12,19 @@ export function serveStatic(app: Express) {
 
   app.use(express.static(distPath));
 
+  // Serve standalone HTML files directly — must come before the SPA catch-all
+  const standalonePages = ["agents-reference-v2.html", "linkedin-thumbnail.html"];
+  standalonePages.forEach((file) => {
+    app.get(`/${file}`, (_req, res) => {
+      const filePath = path.resolve(distPath, file);
+      if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+      } else {
+        res.status(404).send("Not found");
+      }
+    });
+  });
+
   // fall through to index.html if the file doesn't exist
   app.use("/{*path}", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));

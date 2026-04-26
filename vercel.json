@@ -16,6 +16,8 @@
     { "src": "/claude-agent-tsunami", "headers": { "Location": "/blog/claude-agent-tsunami" }, "status": 301 },
     { "src": "/stop-prompting-start-orchestrating", "headers": { "Location": "/blog/stop-prompting-start-orchestrating" }, "status": 301 },
     { "src": "/claude-agents-in-my-workflow", "headers": { "Location": "/blog/claude-agents-in-my-workflow" }, "status": 301 },
+    { "src": "/agents-reference-v2.html", "dest": "/agents-reference-v2.html" },
+    { "src": "/linkedin-thumbnail.html", "dest": "/linkedin-thumbnail.html" },
     { "src": "/((?!assets/|favicon_io/).*)", "dest": "/index.html" }
   ]
 }
